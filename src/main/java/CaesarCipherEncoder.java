@@ -1,5 +1,4 @@
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class CaesarCipherEncoder {
 
@@ -11,20 +10,21 @@ public class CaesarCipherEncoder {
 
     public String encode(String input, int offset, String keyWord)
     {
-        String preparedKeyword = prepareKeyword(keyWord);
-        System.out.println(preparedKeyword);
-
-        char[] alterationArray = getAlterationArray(preparedKeyword, offset);
-
-        for (char c: alterationArray) {
-            System.out.print(c + " ");
-        }
-
-
-        return "";
+        String preparedKeyword = prepareKeyword(keyWord.toUpperCase(Locale.ROOT));
+        Map<Character, Character> alterationMap = getAlterationMap(preparedKeyword, offset);
+        return buildEncodedString(input.toUpperCase(Locale.ROOT), alterationMap);
     }
 
-    private char[] getAlterationArray(String keyWord, int offset)
+    private String buildEncodedString(String input, Map<Character, Character> alterationMap)
+    {
+        StringBuilder sb = new StringBuilder("");
+        for (char c: input.toCharArray()) {
+            sb.append(alterationMap.getOrDefault(c, c));
+        }
+        return sb.toString();
+    }
+
+    private Map<Character, Character> getAlterationMap(String keyWord, int offset)
     {
         char[] keyCharset = keyWord.toCharArray();
 
@@ -37,17 +37,23 @@ public class CaesarCipherEncoder {
         Set<Character> keywordCharSet = Utils.arrayToSet(keyCharset);
 
         int j = 0;
-        for (int i = 0; i < alterationArray.length; i++) {
-            if (alterationArray[i] == Utils.emptyChar)
+        for (int i = offset + 1; i < alterationArray.length + offset + 1; i++) {
+            if (alterationArray[i % alterationArray.length] == Utils.emptyChar)
             {
                 while (keywordCharSet.contains(Utils.russianAlphabet[j]))
                     j++;
-                alterationArray[i] = Utils.russianAlphabet[j];
+                alterationArray[i % alterationArray.length] = Utils.russianAlphabet[j];
                 j++;
             }
         }
 
-        return alterationArray;
+        Map<Character, Character> alterationMap = new HashMap<>();
+
+        for (int i = 0; i < alterationArray.length; i++) {
+            alterationMap.put(Utils.russianAlphabet[i], alterationArray[i]);
+        }
+
+        return alterationMap;
     }
 
     private String prepareKeyword(String initialKeyword)
