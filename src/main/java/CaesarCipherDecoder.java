@@ -8,12 +8,19 @@ import java.util.Map;
 
 public class CaesarCipherDecoder {
 
-    public CaesarCipherDecoder()
+    private static CaesarCipherDecoder INSTANCE;
+
+    private CaesarCipherDecoder()
     {
 
     }
 
-
+    public static CaesarCipherDecoder getInstance()
+    {
+        if (INSTANCE == null)
+            INSTANCE = new CaesarCipherDecoder();
+        return INSTANCE;
+    }
 
     public Map<Character, Float> getCharProbabilityMap(Path source) throws IOException {
 

@@ -2,10 +2,15 @@ import java.util.*;
 
 public class CaesarCipherEncoder {
 
+    private static CaesarCipherEncoder INSTANCE;
 
-    public CaesarCipherEncoder()
+    private CaesarCipherEncoder(){}
+
+    public static CaesarCipherEncoder getInstance()
     {
-
+        if (INSTANCE == null)
+            INSTANCE = new CaesarCipherEncoder();
+        return INSTANCE;
     }
 
     public String encode(String input, int offset, String keyWord)

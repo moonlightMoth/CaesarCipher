@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        CaesarCipherDecoder ccd = new CaesarCipherDecoder();
+        CaesarCipherDecoder ccd = CaesarCipherDecoder.getInstance();
 
         Map<Character, Float> probabilityMap = ccd.getCharProbabilityMap(Paths.get("src/main/resources/russian.txt"));
         probabilityMap.forEach((c, f) -> System.out.println(c + " " + f));

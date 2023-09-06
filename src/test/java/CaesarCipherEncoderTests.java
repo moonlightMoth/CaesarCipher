@@ -9,7 +9,7 @@ public class CaesarCipherEncoderTests {
     @Test
     public void getAlterationArray()
     {
-        CaesarCipherEncoder cse = new CaesarCipherEncoder();
+        CaesarCipherEncoder cse = CaesarCipherEncoder.getInstance();
 
         Assert.assertEquals("ЗАЭЁЫЪ ВИМЛВЫ".toUpperCase(Locale.ROOT),
                 cse.encode(

@@ -9,7 +9,7 @@ public class CaesarCipherDecoderTests {
 
     @Test
     public void getProbabilityMapTest() throws IOException {
-        CaesarCipherDecoder ccd = new CaesarCipherDecoder();
+        CaesarCipherDecoder ccd = CaesarCipherDecoder.getInstance();
         Assert.assertEquals(ccd.getCharProbabilityMap(Paths.get("src/main/resources/russian.txt")),
                 ccd.getCharProbabilityMap(Paths.get("src/main/resources/russian.txt")));
 
