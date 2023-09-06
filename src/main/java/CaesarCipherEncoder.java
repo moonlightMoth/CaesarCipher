@@ -62,7 +62,6 @@ public class CaesarCipherEncoder {
         Set<Character> persistentChars = new HashSet<>();
         StringBuilder sb = new StringBuilder("");
 
-        initialKeyword = initialKeyword.toUpperCase();
         char currentChar;
 
         for (int i = 0; i < initialKeyword.length(); i++) {
@@ -76,5 +75,4 @@ public class CaesarCipherEncoder {
         }
         return sb.toString();
     }
-
 }

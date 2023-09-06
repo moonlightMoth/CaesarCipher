@@ -15,6 +15,11 @@ public class CaesarCipherEncoderTests {
                 cse.encode(
                         "пивная кружка", 5,
                         "голота"));
+
+        Assert.assertEquals("ЗАЭЁЫЪ ВИМЛВЫ".toUpperCase(Locale.ROOT),
+                cse.encode(
+                        "пивная кружка", 38,
+                        "голота"));
     }
     
 }
