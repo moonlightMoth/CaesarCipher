@@ -22,9 +22,9 @@ public class CaesarCipherDecoder {
         return INSTANCE;
     }
 
-    public Map<Character, Float> getCharProbabilityMap(Path source) throws IOException {
+    public Map<Character, Float> getCharProbabilityMap(Path sourceFile) throws IOException {
 
-        FileReader fr = new FileReader(source.toFile());
+        FileReader fr = new FileReader(sourceFile.toFile());
         BufferedReader br = new BufferedReader(fr);
         String readLine = "";
         Map<Character, Integer> separateCharMap = new HashMap<>();
